@@ -38,6 +38,124 @@ int[][] faceFive = { {5, 5, 5}, {5, 5, 5}, {5, 5, 5} }; //top
 int[][] faceSix = { {6, 6, 6}, {6, 6, 6}, {6, 6, 6} }; //bottom
 
 void U() {
-  // move faceOne[0][0]...faceOne[0][2] to faceTwo[0][0]...faceOne[0][2]
-  // 
+  // Save a copy of the top row of each face
+  int[] tempTopRowFaceOne = faceOne[0].clone();
+  int[] tempTopRowFaceTwo = faceTwo[0].clone();
+  int[] tempTopRowFaceThree = faceThree[0].clone();
+  int[] tempTopRowFaceFour = faceFour[0].clone();
+
+  // Rotate the top row of each face clockwise
+  faceOne[0][0] = tempTopRowFaceFour[0];
+  faceOne[0][1] = tempTopRowFaceFour[1];
+  faceOne[0][2] = tempTopRowFaceFour[2];
+
+  faceTwo[0][0] = tempTopRowFaceOne[0];
+  faceTwo[0][1] = tempTopRowFaceOne[1];
+  faceTwo[0][2] = tempTopRowFaceOne[2];
+
+  faceThree[0][0] = tempTopRowFaceTwo[0];
+  faceThree[0][1] = tempTopRowFaceTwo[1];
+  faceThree[0][2] = tempTopRowFaceTwo[2];
+
+  faceFour[0][0] = tempTopRowFaceThree[0];
+  faceFour[0][1] = tempTopRowFaceThree[1];
+  faceFour[0][2] = tempTopRowFaceThree[2];
+
+  // Ensure you play the corresponding sound here.
+}
+
+void UA() {
+  // Save a copy of the top row of each face
+  int[] tempTopRowFaceOne = faceOne[0].clone();
+  int[] tempTopRowFaceTwo = faceTwo[0].clone();
+  int[] tempTopRowFaceThree = faceThree[0].clone();
+  int[] tempTopRowFaceFour = faceFour[0].clone();
+
+  // Rotate the top row of each face anticlockwise
+  faceOne[0][0] = tempTopRowFaceTwo[0];
+  faceOne[0][1] = tempTopRowFaceTwo[1];
+  faceOne[0][2] = tempTopRowFaceTwo[2];
+
+  faceTwo[0][0] = tempTopRowFaceThree[0];
+  faceTwo[0][1] = tempTopRowFaceThree[1];
+  faceTwo[0][2] = tempTopRowFaceThree[2];
+
+  faceThree[0][0] = tempTopRowFaceFour[0];
+  faceThree[0][1] = tempTopRowFaceFour[1];
+  faceThree[0][2] = tempTopRowFaceFour[2];
+
+  faceFour[0][0] = tempTopRowFaceOne[0];
+  faceFour[0][1] = tempTopRowFaceOne[1];
+  faceFour[0][2] = tempTopRowFaceOne[2];
+
+  // Ensure you play the corresponding sound here.
+}
+
+void setup() {
+  size(800,800);
+}
+
+void draw() {
+  displayRubiksCube();
+}
+
+void displayRubiksCube() {
+  int tileSize = 25; // Adjust the size of each tile as needed
+
+  background(255); // Set the background to white
+
+  // Loop through each face and draw the tiles
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      // Draw faceOne
+      fill(getColor(faceOne[i][j]));
+      rect(i * tileSize, j * tileSize, tileSize, tileSize);
+
+      // Draw faceTwo
+      fill(getColor(faceTwo[i][j]));
+      rect((i + 3) * tileSize, j * tileSize, tileSize, tileSize);
+      
+      // Draw faceThree
+      fill(getColor(faceThree[i][j]));
+      rect((i + 6) * tileSize, j * tileSize, tileSize, tileSize);
+      
+      // Draw faceFour
+      fill(getColor(faceFour[i][j]));
+      rect(i * tileSize, (j+3) * tileSize, tileSize, tileSize);
+      
+      // Draw faceFive
+      fill(getColor(faceFive[i][j]));
+      rect((i+3) * tileSize, (j+3) * tileSize, tileSize, tileSize);
+      
+      // Draw faceSix
+      fill(getColor(faceSix[i][j]));
+      rect((i + 6) * tileSize, (j+3) * tileSize, tileSize, tileSize);
+    }
+  }
+}
+
+color getColor(int value) {
+  // Define color mappings for your values (e.g., Red, Green, Blue, Yellow, Orange, Pink)
+  switch (value) {
+    case 1:
+      return color(255, 0, 0); // Red
+    case 2:
+      return color(0, 255, 0); // Green
+    case 3:
+      return color(0, 0, 255); // Blue
+    case 4:
+      return color(255, 255, 0); // Yellow
+    case 5:
+      return color(255, 165, 0); // Orange
+    case 6:
+      return color(255, 192, 203); // Pink
+    default:
+      return color(255); // Default color (white)
+  }
+}
+
+void mouseClicked() {
+  if (mouseX > width/2) {
+    U();
+  } else { UA(); }
 }
