@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 // SETUP:
 
 // Visuals:
@@ -30,6 +32,10 @@
 // - BA (move the back face anticlockwise)
 // ------------------------
 
+SoundFile theme;
+SoundFile move;
+
+
 int[][] faceOne = { {1, 1, 1}, {1, 1, 1}, {1, 1, 1} }; //front left
 int[][] faceTwo = { {2, 2, 2}, {2, 2, 2}, {2, 2, 2} }; //front right
 int[][] faceThree = { {3, 3, 3}, {3, 3, 3}, {3, 3, 3} }; //back right
@@ -41,6 +47,8 @@ int rCubeX = 200;
 int rCubeY = 200;
 int distance = 150;
 int offset = distance*4/7;
+
+
 
 void U() {
   // Save a copy of the top row of each face
@@ -349,6 +357,11 @@ void FA() {
 
 void setup() {
   size(800,800);
+  print(sketchPath());
+  theme = new SoundFile(this,sketchPath("rubikstheme.wav"));
+  move = new SoundFile(this,sketchPath("rubiksmove.wav"));
+  theme.play();
+
 }
 
 void draw() {
@@ -442,5 +455,6 @@ color getColor(int value) {
 void mouseClicked() {
   if (mouseX > width/2) {
     L();
-  } else { LA(); }
+    move.play();
+  } else { LA(); move.play(); }
 }
