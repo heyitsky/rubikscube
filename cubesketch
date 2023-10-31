@@ -1,0 +1,54 @@
+int rCubeX = 200;
+int rCubeY = 200;
+int distance = 150;
+int offset = distance*4/7;
+
+void setup() {
+ size(800, 800);
+}
+
+void draw() {
+  
+  //top left, top right, bottom right, bottom left, complete
+  quad(rCubeX, rCubeY, rCubeX+distance, rCubeY+offset,  rCubeX+distance, rCubeY+offset+distance, rCubeX, rCubeY+distance);
+  quad(rCubeX+distance, rCubeY+offset, rCubeX+(2*distance), rCubeY, rCubeX+(2*distance), rCubeY+distance, rCubeX+distance, rCubeY+offset+distance);
+  quad(rCubeX, rCubeY, rCubeX+distance, rCubeY-offset, rCubeX+(2*distance), rCubeY, rCubeX+distance, rCubeY+offset);
+
+  line(rCubeX+distance/3, rCubeY+offset/3, rCubeX+distance/3, rCubeY+offset/3+distance);
+  line(rCubeX+distance*2/3, rCubeY+offset*2/3, rCubeX+distance*2/3, rCubeY+offset*2/3+distance);
+  
+  line(rCubeX, rCubeY+distance/3, rCubeX+distance, rCubeY+(distance/3)+offset);
+  line(rCubeX, rCubeY+distance*2/3, rCubeX+distance, rCubeY+(distance*2/3)+offset);
+  
+  line(rCubeX+distance, rCubeY+offset+ distance/3, rCubeX+distance*2, rCubeY+offset+distance/3-offset);
+  line(rCubeX+distance, rCubeY+offset+distance*2/3, rCubeX+distance*2, rCubeY+offset+distance*2/3-offset);
+  
+  line(rCubeX+distance+distance/3, rCubeY+offset-offset/3, rCubeX+distance+distance/3, rCubeX+offset-offset/3+distance);
+  line(rCubeX+distance+distance*2/3, rCubeY+offset-offset*2/3, rCubeX+distance+distance*2/3, rCubeX+offset-offset*2/3+distance);
+  
+  line(rCubeX+distance/3, rCubeY+offset/3, rCubeX+distance+distance/3, rCubeY-offset+offset/3);
+  line(rCubeX+distance*2/3, rCubeY+offset*2/3, rCubeX+distance+distance*2/3, rCubeY-offset+offset*2/3);
+  
+  line(rCubeX+distance/3, rCubeY-offset/3, rCubeX+distance+distance/3, rCubeY+offset-offset/3);
+  line(rCubeX+distance*2/3, rCubeY-offset*2/3, rCubeX+distance+distance*2/3, rCubeY+offset-offset*2/3);
+  //quad(
+  //rCubeX, rCubeY, 
+  //rCubeX+distance/3, rCubeY+offset/3,
+  //rCubeX+distance/3, rCubeY+(offset/3)+distance/3,
+  //rCubeX, rCubeY+distance/3);
+  
+  //quad(
+  //rCubeX+distance/3, rCubeY+offset/3, 
+  //rCubeX+(distance*2/3), rCubeY+(offset*2/3),
+  //rCubeX+distance*2/3, rCubeY+(offset*2/3)+distance/3,
+  //rCubeX+distance/3, rCubeY+distance/3+offset/3);
+  
+  //quad(
+  //rCubeX+(distance*2/3), rCubeY+(offset*2/3),
+  //rCubeX+distance, rCubeY+offset,
+  //rCubeX+distance, rCubeY+offset+distance/3,
+  //rCubeX+distance*2/3, rCubeY+(offset*2/3)+distance/3
+  //);
+
+}
+
